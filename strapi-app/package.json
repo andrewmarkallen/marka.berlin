@@ -1,5 +1,5 @@
 {
-  "name": "marka-berlin",
+  "name": "strapi-app",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -20,7 +20,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "7682ad24-0e78-412f-9142-7012a23ce752"
+    "uuid": "e03c4922-fe67-4410-869a-d3a72c7823df"
   },
   "engines": {
     "node": ">=16.0.0 <=20.x.x",
