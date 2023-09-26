@@ -12,14 +12,12 @@ const App = () => {
   const [restaurants, setRestaurants] = useState([])
 
   // Functional pipeline, fantasy-land
-  const transform = map(x => x.data.data)
-  const compute = (fn, x) => (fork (I) (fn))(x)
   const pipeline = useCallback((fn, resource) => P([
       () => resource,
       (path) => encaseP(axios) (('GET', `http://localhost:1337/api/${path}`)),
-      transform,
-      fork(I),
-    ])(fn), [transform, compute])
+      map(x => x.data.data),
+      fork (I) (fn),
+    ])(fn), [])
   
   useEffect(() => pipeline(setRestaurants,  'restaurants'),[pipeline])
   const render = ({id, attributes: {Name}}) => (<li key={id}>{Name}</li>) 
