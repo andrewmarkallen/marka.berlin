@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  script: |
+    docker build -t gcr.io/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA
+images:
+- 'gcr.io/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA'
