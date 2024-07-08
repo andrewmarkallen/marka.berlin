@@ -18,4 +18,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 images:
-- 'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4/marka-berlin:$COMMIT_SHA'
+- 'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4/marka-berlin/commit:$COMMIT_SHA'
