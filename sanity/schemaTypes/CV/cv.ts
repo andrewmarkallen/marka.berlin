@@ -50,5 +50,11 @@ export const CV = defineType({
       ...refArray('language'),
       validation: (rule) => rule.required().error('Required'),
     }),
+    defineField({
+      name: 'contact',
+      type: 'reference',
+      to: [{type: 'contact'}],
+      validation: (rule) => rule.required().error('Required'),
+    }),
   ],
 })

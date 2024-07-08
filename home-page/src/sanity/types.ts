@@ -147,6 +147,25 @@ export type CV = {
     _key: string
     [internalGroqTypeReferenceTo]?: 'language'
   }>
+  contact?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'contact'
+  }
+}
+
+export type Contact = {
+  _id: string
+  _type: 'contact'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  email?: string
+  address?: string
+  phone?: string
+  website?: string
+  github?: string
 }
 
 export type Role = {
@@ -363,6 +382,7 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Education
   | CV
+  | Contact
   | Role
   | Language
   | Me
@@ -487,6 +507,12 @@ export type CV_QUERYResult = {
     _key: string
     [internalGroqTypeReferenceTo]?: 'language'
   }>
+  contact?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'contact'
+  }
 } | null
 // Variable: ROLE_QUERY
 // Query: *[_type == "role" && slug.current == $slug][0]{...}
@@ -622,6 +648,12 @@ export type CV_FULL_QUERYResult = {
     language_name?: string
     level?: string
   }> | null
+  contact?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'contact'
+  }
 } | null
 // Source: ../home-page/src/app/page.tsx
 // Variable: EVENTS_QUERY
