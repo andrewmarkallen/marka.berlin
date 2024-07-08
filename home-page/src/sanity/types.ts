@@ -68,14 +68,17 @@ export type Geopoint = {
   alt?: number
 }
 
-export type Me = {
+export type Education = {
   _id: string
-  _type: 'me'
+  _type: 'education'
   _createdAt: string
   _updatedAt: string
   _rev: string
-  name?: string
-  aboutme?: Array<{
+  startDate?: string
+  endDate?: string
+  title?: string
+  location?: string
+  description?: Array<{
     children?: Array<{
       marks?: Array<string>
       text?: string
@@ -93,11 +96,62 @@ export type Me = {
     _type: 'block'
     _key: string
   }>
+  slug?: Slug
 }
 
-export type Experience = {
+export type CV = {
   _id: string
-  _type: 'experience'
+  _type: 'CV'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  subtitle?: string
+  tagline?: string
+  roles?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'role'
+  }>
+  education?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'education'
+  }>
+  communicationSkills?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  languages?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'language'
+  }>
+}
+
+export type Role = {
+  _id: string
+  _type: 'role'
   _createdAt: string
   _updatedAt: string
   _rev: string
@@ -128,19 +182,40 @@ export type Experience = {
   slug?: Slug
 }
 
-export type Cv = {
+export type Language = {
   _id: string
-  _type: 'cv'
+  _type: 'language'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  language_name?: string
+  level?: string
+}
+
+export type Me = {
+  _id: string
+  _type: 'me'
   _createdAt: string
   _updatedAt: string
   _rev: string
   name?: string
-  roles?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
+  aboutme?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
     _key: string
-    [internalGroqTypeReferenceTo]?: 'experience'
   }>
 }
 
@@ -286,9 +361,11 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Education
+  | CV
+  | Role
+  | Language
   | Me
-  | Experience
-  | Cv
   | Event
   | SanityImageCrop
   | SanityImageHotspot
@@ -361,22 +438,8 @@ export type EVENT_QUERY2Result = {
   tickets?: string
 } | null
 // Variable: CV_QUERY
-// Query: *[_type == "cv"][0]
-export type CV_QUERYResult = {
-  _id: string
-  _type: 'cv'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  roles?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'experience'
-  }>
-} | null
+// Query: *[_type == "cv"][0]{  ..., "roles": roles[]->{...}}
+export type CV_QUERYResult = null
 // Source: ../home-page/src/app/page.tsx
 // Variable: EVENTS_QUERY
 // Query: *[  _type == "event"   && defined(slug.current)]{_id, name, slug, date}|order(date desc)
