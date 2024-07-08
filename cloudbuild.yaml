@@ -2,5 +2,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   script: |
     docker build -t gcr.io/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA
+options:
+  logging: CLOUD_LOGGING_ONLY
 images:
 - 'gcr.io/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA'
