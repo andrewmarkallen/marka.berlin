@@ -47,7 +47,7 @@ export const education = defineType({
       type: 'slug',
       options: {source: 'location'},
       validation: (rule) => rule.required().error('Required'),
-      hidden: ({document}) => !document?.company,
+      hidden: ({document}) => !document?.location,
     }),
   ],
   preview: {

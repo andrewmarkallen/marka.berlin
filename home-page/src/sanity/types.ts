@@ -438,8 +438,191 @@ export type EVENT_QUERY2Result = {
   tickets?: string
 } | null
 // Variable: CV_QUERY
-// Query: *[_type == "cv"][0]{  ..., "roles": roles[]->{...}}
-export type CV_QUERYResult = null
+// Query: *[_type == "CV"][0]{  ...}
+export type CV_QUERYResult = {
+  _id: string
+  _type: 'CV'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  subtitle?: string
+  tagline?: string
+  roles?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'role'
+  }>
+  education?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'education'
+  }>
+  communicationSkills?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  languages?: Array<{
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    _key: string
+    [internalGroqTypeReferenceTo]?: 'language'
+  }>
+} | null
+// Variable: ROLE_QUERY
+// Query: *[_type == "role" && slug.current == $slug][0]{...}
+export type ROLE_QUERYResult = {
+  _id: string
+  _type: 'role'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  startDate?: string
+  endDate?: string
+  role?: string
+  company?: string
+  location?: string
+  keyTechnologies?: Array<string>
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  slug?: Slug
+} | null
+// Variable: CV_FULL_QUERY
+// Query: *[_type == "CV"][0]{  ...,  "roles": roles[]->{...},  "education": education[]->{...},  "languages": languages[]->{...}}
+export type CV_FULL_QUERYResult = {
+  _id: string
+  _type: 'CV'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  subtitle?: string
+  tagline?: string
+  roles: Array<{
+    _id: string
+    _type: 'role'
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
+    startDate?: string
+    endDate?: string
+    role?: string
+    company?: string
+    location?: string
+    keyTechnologies?: Array<string>
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    slug?: Slug
+  }> | null
+  education: Array<{
+    _id: string
+    _type: 'education'
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
+    startDate?: string
+    endDate?: string
+    title?: string
+    location?: string
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    slug?: Slug
+  }> | null
+  communicationSkills?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  languages: Array<{
+    _id: string
+    _type: 'language'
+    _createdAt: string
+    _updatedAt: string
+    _rev: string
+    language_name?: string
+    level?: string
+  }> | null
+} | null
 // Source: ../home-page/src/app/page.tsx
 // Variable: EVENTS_QUERY
 // Query: *[  _type == "event"   && defined(slug.current)]{_id, name, slug, date}|order(date desc)
