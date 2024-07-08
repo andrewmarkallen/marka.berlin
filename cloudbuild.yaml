@@ -1,11 +1,11 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin/commit:$COMMIT_SHA', '.']
 
   # Docker Push
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 
-          'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin:$COMMIT_SHA']
+          'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin/commit:$COMMIT_SHA']
 
 # Entrypoint, timeout and environment variables
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -14,7 +14,7 @@ steps:
   args: ['compute', 'instances', 
           'create-with-container', 'my-vm-name',
           '--container-image', 
-          'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin:$COMMIT_SHA']
+          'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4n/marka-berlin/commit:$COMMIT_SHA']
 options:
   logging: CLOUD_LOGGING_ONLY
 images:

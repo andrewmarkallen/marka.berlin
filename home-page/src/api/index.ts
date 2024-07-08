@@ -29,9 +29,26 @@ export const CV_FULL_QUERY = groq`*[_type == "CV"][0]{
 }
 `
 
-export const _query = async <T extends S | null, S>(q: string) => {
-  const result = await sanityFetch<T>({ query: q })
-  if (result !== null) return result as S
+type Query =
+  | {
+      query: 'cv'
+      fetchType: CV_QUERYResult
+      returnType: CV
+    }
+  | {
+      query: 'role'
+      fetchType: ROLE_QUERYResult
+      returnType: Role
+    }
+  | {
+      query: 'cvFull'
+      fetchType: CV_FULL_QUERYResult
+      returnType: CV_Full
+    }
+
+const _query = async <T extends Query['query']>(q: T): Promise<Query['returnType']> => {
+  const result = await sanityFetch<Query['fetchType']>({ query: q })
+  if (result !== null) return result as Query['returnType']
   throw new Error('Query failed')
 }
 
@@ -46,7 +63,7 @@ export const query = async (q: string) => {
         query: ROLE_QUERY
       }) as Promise<Role>
     case 'cvFull':
-      return _query<CV_FULL_QUERYResult, CV_Full>(CV_FULL_QUERY)
+      return _query('cvFull')
     default:
       throw new Error('Invalid query type')
   }
