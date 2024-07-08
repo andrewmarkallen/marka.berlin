@@ -3,6 +3,7 @@ import { groq, SanityDocument } from 'next-sanity'
 import { sanityFetch } from '@/sanity/client'
 import { CVOverview } from '@/components/CV'
 import { query } from '@/api'
+import { CV } from '@/sanity/types'
 
 const EVENTS_QUERY = groq`*[
   _type == "event" 
@@ -12,7 +13,7 @@ const EVENTS_QUERY = groq`*[
 
 export default async function IndexPage() {
   const events = await sanityFetch<SanityDocument[]>({ query: EVENTS_QUERY })
-  const cv = await query('cv')
+  const cv = (await query('cv')) as CV
 
   return (
     <main className="flex bg-gray-100 min-h-screen flex-col p-24 gap-12">
