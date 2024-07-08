@@ -1,0 +1,53 @@
+{
+  "name": "markaberlin",
+  "private": true,
+  "version": "0.1.0",
+  "author": {
+    "name": "Mark Allen"
+  },
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "prettier": "prettier 'src/**/*.{js,jsx,ts,tsx}' --write",
+    "lint": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
+    "extract-schema": "sanity schema extract",
+    "generate-types-from-schema": "sanity typegen generate",
+    "gen:types": "sanity schema extract && sanity typegen generate"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@portabletext/react": "^3.1.0",
+    "@sanity/client": "^6.20.1",
+    "@sanity/icons": "^2.11.0",
+    "@sanity/ui": "^2.0.0",
+    "@sanity/vision": "^3.49.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^4.0.0",
+    "@types/react": "^18.0.25",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.3.2",
+    "sanity": "^3.49.0",
+    "typescript": "^5.1.6"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
+}
