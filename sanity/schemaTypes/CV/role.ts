@@ -1,13 +1,9 @@
 import {defineField, defineType} from 'sanity'
 
-const refArray = (type: string) => ({
-  type: 'array',
-  of: [{type: 'reference', to: [{type}]}],
-})
-
-export const experienceType = defineType({
-  name: 'experience',
-  title: 'Experience',
+export const role = defineType({
+  name: 'role',
+  title: 'Role',
+  description: 'A role in your work history',
   type: 'document',
   fields: [
     defineField({
@@ -79,22 +75,4 @@ export const experienceType = defineType({
       }
     },
   },
-})
-
-export const cvType = defineType({
-  name: 'cv',
-  title: 'CV',
-  type: 'document',
-  fields: [
-    defineField({
-      name: 'name',
-      type: 'string',
-      validation: (rule) => rule.required().error('Required'),
-    }),
-    defineField({
-      name: 'roles',
-      ...refArray('experience'),
-      validation: (rule) => rule.required().error('Required'),
-    }),
-  ],
 })
