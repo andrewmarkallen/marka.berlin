@@ -1,7 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  script: |
-    docker build -t europe-west1-docker.pkg.dev/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/tactile-atlas-428811-g4/github.com/andrewmarkallen/marka.berlin:$COMMIT_SHA', '.']
+  dir: 'nextapp'
 options:
   logging: CLOUD_LOGGING_ONLY
 images:
